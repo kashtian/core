@@ -543,6 +543,7 @@ export const createVNode = (
   __DEV__ ? createVNodeWithArgsTransform : _createVNode
 ) as typeof _createVNode
 
+// TSNOTE start 1.0.1.1 createVNode
 function _createVNode(
   type: VNodeTypes | ClassComponent | typeof NULL_DYNAMIC_COMPONENT,
   props: (Data & VNodeProps) | null = null,

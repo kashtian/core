@@ -410,6 +410,7 @@ export const isReservedPrefix = (key: string): key is '_' | '$' =>
 const hasSetupBinding = (state: Data, key: string) =>
   state !== EMPTY_OBJ && !state.__isScriptSetup && hasOwn(state, key)
 
+// TSNOTE render 1.3.2.0 PublicInstanceProxyHandlers
 export const PublicInstanceProxyHandlers: ProxyHandler<any> = {
   get({ _: instance }: ComponentRenderContext, key: string) {
     if (key === ReactiveFlags.SKIP) {

@@ -252,6 +252,7 @@ export function createAppAPI<HostElement>(
   render: RootRenderFunction<HostElement>,
   hydrate?: RootHydrateFunction,
 ): CreateAppFunction<HostElement> {
+  // TSNOTE start 1.0.0 createApp 定义了 app 方法
   return function createApp(rootComponent, rootProps = null) {
     if (!isFunction(rootComponent)) {
       rootComponent = extend({}, rootComponent)
@@ -352,7 +353,7 @@ export function createAppAPI<HostElement>(
         context.directives[name] = directive
         return app
       },
-
+      // TSNOTE start 1.0.1.0 mount real function
       mount(
         rootContainer: HostElement,
         isHydrate?: boolean,

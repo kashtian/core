@@ -64,6 +64,7 @@ export class Link {
 /**
  * @internal
  */
+// TSNOTE reactivity Dep
 export class Dep {
   version = 0
   /**

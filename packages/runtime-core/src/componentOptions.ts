@@ -515,6 +515,7 @@ function createDuplicateChecker() {
 
 export let shouldCacheAccess = true
 
+// render 1.3.2.3 applyOptions
 export function applyOptions(instance: ComponentInternalInstance): void {
   const options = resolveMergedOptions(instance)
   const publicThis = instance.proxy! as any

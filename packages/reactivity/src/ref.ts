@@ -56,6 +56,7 @@ export function ref<T>(
   value: T,
 ): [T] extends [Ref] ? IfAny<T, Ref<T>, T> : Ref<UnwrapRef<T>, UnwrapRef<T> | T>
 export function ref<T = any>(): Ref<T | undefined>
+// TSNOTE reactivity ref function
 export function ref(value?: unknown) {
   return createRef(value, false)
 }
@@ -105,6 +106,7 @@ function createRef(rawValue: unknown, shallow: boolean) {
 /**
  * @internal
  */
+// TSNOTE reactivity ref RefImpl
 class RefImpl<T = any> {
   _value: T
   private _rawValue: T
@@ -247,6 +249,7 @@ export function toValue<T>(source: MaybeRefOrGetter<T>): T {
   return isFunction(source) ? source() : unref(source)
 }
 
+// TSNOTE reactivity shallowUnwrapHandlers 代理 get 结构 ref value
 const shallowUnwrapHandlers: ProxyHandler<any> = {
   get: (target, key, receiver) =>
     key === ReactiveFlags.RAW
@@ -271,6 +274,7 @@ const shallowUnwrapHandlers: ProxyHandler<any> = {
  * @param objectWithRefs - Either an already-reactive object or a simple object
  * that contains refs.
  */
+// TSNOTE reactivity proxyRefs
 export function proxyRefs<T extends object>(
   objectWithRefs: T,
 ): ShallowUnwrapRef<T> {

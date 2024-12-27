@@ -95,6 +95,7 @@ export const hydrate = ((...args) => {
   ensureHydrationRenderer().hydrate(...args)
 }) as RootHydrateFunction
 
+// TSNOTE start 1.0 createApp entry point
 export const createApp = ((...args) => {
   const app = ensureRenderer().createApp(...args)
 
@@ -104,6 +105,7 @@ export const createApp = ((...args) => {
   }
 
   const { mount } = app
+  // TSNOTE start 1.0.1 mount 初始化挂载
   app.mount = (containerOrSelector: Element | ShadowRoot | string): any => {
     const container = normalizeContainer(containerOrSelector)
     if (!container) return

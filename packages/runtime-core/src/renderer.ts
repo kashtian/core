@@ -370,6 +370,7 @@ function baseCreateRenderer(
 
   // Note: functions inside this closure should use `const xxx = () => {}`
   // style in order to prevent being inlined by minifiers.
+  // TSNOTE render 1.1 patch function
   const patch: PatchFn = (
     n1,
     n2,
@@ -1124,7 +1125,7 @@ function baseCreateRenderer(
       }
     }
   }
-
+  // TSNOTE render 1.2 processComponent
   const processComponent = (
     n1: VNode | null,
     n2: VNode,
@@ -1161,7 +1162,7 @@ function baseCreateRenderer(
       updateComponent(n1, n2, optimized)
     }
   }
-
+  // TSNOTE render 1.3 mountComponent
   const mountComponent: MountComponentFn = (
     initialVNode,
     container,
@@ -2351,6 +2352,7 @@ function baseCreateRenderer(
   }
 
   let isFlushing = false
+  // TSNOTE render 1.0 render function
   const render: RootRenderFunction = (vnode, container, namespace) => {
     if (vnode == null) {
       if (container._vnode) {

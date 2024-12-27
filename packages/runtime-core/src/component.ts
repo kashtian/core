@@ -601,6 +601,7 @@ const emptyAppContext = createAppContext()
 
 let uid = 0
 
+// TSNOTE render 1.3.0 createComponentInstance
 export function createComponentInstance(
   vnode: VNode,
   parent: ComponentInternalInstance | null,
@@ -796,6 +797,7 @@ export function isStatefulComponent(
 
 export let isInSSRComponentSetup = false
 
+// TSNOTE render 1.3.1 setupComponent
 export function setupComponent(
   instance: ComponentInternalInstance,
   isSSR = false,
@@ -816,6 +818,7 @@ export function setupComponent(
   return setupResult
 }
 
+// TSNOTE render 1.3.2 setupStatefulComponent 执行 setup 函数
 function setupStatefulComponent(
   instance: ComponentInternalInstance,
   isSSR: boolean,
@@ -916,11 +919,13 @@ function setupStatefulComponent(
   }
 }
 
+// TSNOTE render 1.3.2.1 handleSetupResult
 export function handleSetupResult(
   instance: ComponentInternalInstance,
   setupResult: unknown,
   isSSR: boolean,
 ): void {
+  // TSTODO 这里有个点奇怪，setup 的返回结果应该是 function 怎么是 object?
   if (isFunction(setupResult)) {
     // setup returned an inline render function
     if (__SSR__ && (instance.type as ComponentOptions).__ssrInlineRender) {
@@ -980,6 +985,7 @@ export function registerRuntimeCompiler(_compile: any): void {
 // dev only
 export const isRuntimeOnly = (): boolean => !compile
 
+// TSNOTE render 1.3.2.2 finishComponentSetup
 export function finishComponentSetup(
   instance: ComponentInternalInstance,
   isSSR: boolean,
