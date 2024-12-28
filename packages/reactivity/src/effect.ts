@@ -83,6 +83,7 @@ export interface Subscriber extends DebuggerOptions {
 
 const pausedQueueEffects = new WeakSet<ReactiveEffect>()
 
+// TSNOTE effect ReactiveEffect 从功能上来说类似 vue2 的 Watcher
 export class ReactiveEffect<T = any>
   implements Subscriber, ReactiveEffectOptions
 {

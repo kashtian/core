@@ -22,6 +22,7 @@ const isNativeOn = (key: string) =>
 
 type DOMRendererOptions = RendererOptions<Node, Element>
 
+// TSNOTE render 1.5.0.1.0 patchProp process props
 export const patchProp: DOMRendererOptions['patchProp'] = (
   el,
   key,

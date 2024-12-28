@@ -249,7 +249,7 @@ export function toValue<T>(source: MaybeRefOrGetter<T>): T {
   return isFunction(source) ? source() : unref(source)
 }
 
-// TSNOTE reactivity shallowUnwrapHandlers 代理 get 结构 ref value
+// TSNOTE reactivity shallowUnwrapHandlers 代理 get 解构 ref value
 const shallowUnwrapHandlers: ProxyHandler<any> = {
   get: (target, key, receiver) =>
     key === ReactiveFlags.RAW

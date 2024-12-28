@@ -515,7 +515,7 @@ function createDuplicateChecker() {
 
 export let shouldCacheAccess = true
 
-// render 1.3.2.3 applyOptions
+// TSNOTE render 1.3.2.3 applyOptions 处理组件的 options 选项 & 注册生命周期 hook
 export function applyOptions(instance: ComponentInternalInstance): void {
   const options = resolveMergedOptions(instance)
   const publicThis = instance.proxy! as any
@@ -922,6 +922,7 @@ export function createWatcher(
  * This is done only once per-component since the merging does not involve
  * instances.
  */
+// TSNOTE render 1.3.2.4 resolveMergedOptions
 export function resolveMergedOptions(
   instance: ComponentInternalInstance,
 ): MergedComponentOptions {

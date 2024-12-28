@@ -33,6 +33,7 @@ export function removeEventListener(
 
 const veiKey: unique symbol = Symbol('_vei')
 
+// TSNOTE render 1.5.0.1.1 patchEvent
 export function patchEvent(
   el: Element & { [veiKey]?: Record<string, Invoker | undefined> },
   rawName: string,
@@ -90,6 +91,7 @@ const p = /*@__PURE__*/ Promise.resolve()
 const getNow = () =>
   cachedNow || (p.then(() => (cachedNow = 0)), (cachedNow = Date.now()))
 
+// TSNOTE render 1.5.0.1.2 createInvoker 给 dom 元素绑定 invoker 事件
 function createInvoker(
   initialValue: EventValue,
   instance: ComponentInternalInstance | null,

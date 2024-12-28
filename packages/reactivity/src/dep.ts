@@ -29,6 +29,7 @@ export let globalVersion = 0
  *
  * @internal
  */
+// TSNOTE reactivity Link
 export class Link {
   /**
    * - Before each effect run, all previous dep links' version are reset to -1

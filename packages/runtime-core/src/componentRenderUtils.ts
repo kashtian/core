@@ -42,6 +42,7 @@ export function markAttrsAccessed(): void {
 
 type SetRootFn = ((root: VNode) => void) | undefined
 
+// TSNOTE render 1.3.3.1 renderComponentRoot
 export function renderComponentRoot(
   instance: ComponentInternalInstance,
 ): VNode {
@@ -90,6 +91,7 @@ export function renderComponentRoot(
               },
             })
           : proxyToUse
+      // TSNOTE render 1.3.3.1.0 调用 render 函数 生成 vnode
       result = normalizeVNode(
         render!.call(
           thisProxy,

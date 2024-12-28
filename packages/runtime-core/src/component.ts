@@ -919,13 +919,12 @@ function setupStatefulComponent(
   }
 }
 
-// TSNOTE render 1.3.2.1 handleSetupResult
+// TSNOTE render 1.3.2.1 handleSetupResult 处理 setup 函数返回值
 export function handleSetupResult(
   instance: ComponentInternalInstance,
   setupResult: unknown,
   isSSR: boolean,
 ): void {
-  // TSTODO 这里有个点奇怪，setup 的返回结果应该是 function 怎么是 object?
   if (isFunction(setupResult)) {
     // setup returned an inline render function
     if (__SSR__ && (instance.type as ComponentOptions).__ssrInlineRender) {

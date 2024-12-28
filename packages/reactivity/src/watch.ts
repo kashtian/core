@@ -117,6 +117,8 @@ export function onWatcherCleanup(
   }
 }
 
+// TSNOTE reactivity watch 内部生成 ReactiveEffect 实例，监听 getter: () => source.value
+// cb 默认是懒执行的，getter 是会立即触发的，便于收集依赖
 export function watch(
   source: WatchSource | WatchSource[] | WatchEffect | object,
   cb?: WatchCallback | null,
@@ -133,6 +135,8 @@ export function watch(
     )
   }
 
+  // 如果监听的是 reactive 对象会使用 reactiveGetter
+  // 会隐式地创建一个深层侦听器——该回调函数在所有嵌套的变更时都会被触发
   const reactiveGetter = (source: object) => {
     // traverse will happen in wrapped getter below
     if (deep) return source
@@ -151,6 +155,8 @@ export function watch(
   let isMultiSource = false
 
   if (isRef(source)) {
+    // 如果监听的是 ref 对象，仅监听 .value 不会深层监听
+    // 意味着如果 ref 传入的是对象，改变对象的属性将不会触发回调
     getter = () => source.value
     forceTrigger = isShallow(source)
   } else if (isReactive(source)) {

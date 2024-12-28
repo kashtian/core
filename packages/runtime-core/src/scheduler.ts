@@ -111,6 +111,7 @@ export function queueJob(job: SchedulerJob): void {
   }
 }
 
+// TSNOTE reactivity watch scheduler queueFlush
 function queueFlush() {
   if (!currentFlushPromise) {
     currentFlushPromise = resolvedPromise.then(flushJobs)
@@ -206,6 +207,7 @@ export function flushPostFlushCbs(seen?: CountMap): void {
 const getId = (job: SchedulerJob): number =>
   job.id == null ? (job.flags! & SchedulerJobFlags.PRE ? -1 : Infinity) : job.id
 
+// TSNOTE reactivity watch scheduler flushJobs 通过 promise.then 异步执行
 function flushJobs(seen?: CountMap) {
   if (__DEV__) {
     seen = seen || new Map()

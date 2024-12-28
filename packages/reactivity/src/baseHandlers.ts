@@ -133,6 +133,7 @@ class BaseReactiveHandler implements ProxyHandler<Target> {
   }
 }
 
+// TSNOTE reactivity reactive MutableReactiveHandler proxy handler 
 class MutableReactiveHandler extends BaseReactiveHandler {
   constructor(isShallow = false) {
     super(false, isShallow)

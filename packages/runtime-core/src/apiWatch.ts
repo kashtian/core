@@ -123,6 +123,7 @@ export function watch<
 ): WatchHandle
 
 // implementation
+// TSNOTE reactivity watch entry point
 export function watch<T = any, Immediate extends Readonly<boolean> = false>(
   source: T | WatchSource<T>,
   cb: any,
@@ -203,6 +204,7 @@ function doWatch(
       if (isFirstRun) {
         job()
       } else {
+        // TSNOTE reactivity watch queueJob by effect.trigger()
         queueJob(job)
       }
     }

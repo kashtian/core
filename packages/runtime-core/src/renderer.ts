@@ -590,6 +590,7 @@ function baseCreateRenderer(
     hostRemove(anchor!)
   }
 
+  // TSNOTE render 1.5 processElement
   const processElement = (
     n1: VNode | null,
     n2: VNode,
@@ -631,6 +632,7 @@ function baseCreateRenderer(
     }
   }
 
+  // TSNOTE render 1.5.0 mountElement createElement 创建 dom 元素
   const mountElement = (
     vnode: VNode,
     container: RendererElement,
@@ -657,6 +659,7 @@ function baseCreateRenderer(
     if (shapeFlag & ShapeFlags.TEXT_CHILDREN) {
       hostSetElementText(el, vnode.children as string)
     } else if (shapeFlag & ShapeFlags.ARRAY_CHILDREN) {
+      // TSNOTE render 1.5.0.0 mountChildren entry in mountElement
       mountChildren(
         vnode.children as VNodeArrayChildren,
         el,
@@ -674,6 +677,7 @@ function baseCreateRenderer(
     }
     // scopeId
     setScopeId(el, vnode, vnode.scopeId, slotScopeIds, parentComponent)
+    // TSNOTE render 1.5.0.1 处理 props 包括 onClick 事件等
     // props
     if (props) {
       for (const key in props) {
@@ -712,6 +716,7 @@ function baseCreateRenderer(
     if (needCallTransitionHooks) {
       transition!.beforeEnter(el)
     }
+    // TSNOTE render 1.5.0.2 hostInsert children 遍历完成后插入到父元素
     hostInsert(el, container, anchor)
     if (
       (vnodeHook = props && props.onVnodeMounted) ||
@@ -768,6 +773,7 @@ function baseCreateRenderer(
     }
   }
 
+  // TSNOTE render 1.4 mountChildren
   const mountChildren: MountChildrenFn = (
     children,
     container,
@@ -783,6 +789,7 @@ function baseCreateRenderer(
       const child = (children[i] = optimized
         ? cloneIfMounted(children[i] as VNode)
         : normalizeVNode(children[i]))
+      // TSNOTE render 1.4.0 patch entry in mountChildren
       patch(
         null,
         child,
@@ -797,6 +804,7 @@ function baseCreateRenderer(
     }
   }
 
+  // TSNOTE render 1.5.1 patchElement
   const patchElement = (
     n1: VNode,
     n2: VNode,
@@ -937,6 +945,7 @@ function baseCreateRenderer(
     }
   }
 
+  // TSNOTE render 1.5.1.0 patchBlockChildren
   // The fast path for blocks.
   const patchBlockChildren: PatchBlockChildrenFn = (
     oldChildren,
@@ -1019,6 +1028,7 @@ function baseCreateRenderer(
     }
   }
 
+  // TSNOTE render 1.6 processFragment
   const processFragment = (
     n1: VNode | null,
     n2: VNode,
@@ -1242,6 +1252,7 @@ function baseCreateRenderer(
     }
   }
 
+  // TSNOTE render 1.2.0 updateComponent
   const updateComponent = (n1: VNode, n2: VNode, optimized: boolean) => {
     const instance = (n2.component = n1.component)!
     if (shouldUpdateComponent(n1, n2, optimized)) {
@@ -1273,6 +1284,7 @@ function baseCreateRenderer(
     }
   }
 
+  // TSNOTE render 1.3.3 setupRenderEffect
   const setupRenderEffect: SetupRenderEffectFn = (
     instance,
     initialVNode,
@@ -1282,6 +1294,7 @@ function baseCreateRenderer(
     namespace: ElementNamespace,
     optimized,
   ) => {
+    // TSNOTE render 1.3.3.0 componentUpdateFn render component root & patch subtree
     const componentUpdateFn = () => {
       if (!instance.isMounted) {
         let vnodeHook: VNodeHook | null | undefined
@@ -1362,6 +1375,7 @@ function baseCreateRenderer(
           if (__DEV__) {
             startMeasure(instance, `patch`)
           }
+          // TSNOTE render 1.3.3.2 patch entry in componentUpdateFn
           patch(
             null,
             subTree,
@@ -1599,6 +1613,7 @@ function baseCreateRenderer(
     resetTracking()
   }
 
+  // TSNOTE render 1.6.1 patchChildren
   const patchChildren: PatchChildrenFn = (
     n1,
     n2,
@@ -1760,6 +1775,7 @@ function baseCreateRenderer(
     }
   }
 
+  // TSNOTE render 1.6.1.0 patchKeyedChildren
   // can be all-keyed or mixed
   const patchKeyedChildren = (
     c1: VNode[],
@@ -2359,6 +2375,7 @@ function baseCreateRenderer(
         unmount(container._vnode, null, null, true)
       }
     } else {
+      // TSNOTE render 1.0.0 patch entry in render
       patch(
         container._vnode || null,
         vnode,
