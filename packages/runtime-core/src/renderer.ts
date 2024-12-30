@@ -1775,7 +1775,8 @@ function baseCreateRenderer(
     }
   }
 
-  // TSNOTE render 1.6.1.0 patchKeyedChildren
+  // TSNOTE render 1.6.1.0 patchKeyedChildren diff 算法
+  // TSTODO diff 算法
   // can be all-keyed or mixed
   const patchKeyedChildren = (
     c1: VNode[],
