@@ -44,6 +44,7 @@ export interface WritableComputedOptions<T, S = T> {
  * @private exported by @vue/reactivity for Vue core use, but not exported from
  * the main vue package
  */
+// TSNOTE reactivity computed ComputedRefImpl
 export class ComputedRefImpl<T = any> implements Subscriber {
   /**
    * @internal
@@ -194,6 +195,7 @@ export function computed<T, S = T>(
   options: WritableComputedOptions<T, S>,
   debugOptions?: DebuggerOptions,
 ): WritableComputedRef<T, S>
+// TSNOTE reactivity computed real function
 export function computed<T>(
   getterOrOptions: ComputedGetter<T> | WritableComputedOptions<T>,
   debugOptions?: DebuggerOptions,

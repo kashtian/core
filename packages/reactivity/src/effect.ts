@@ -362,6 +362,7 @@ function isDirty(sub: Subscriber): boolean {
  * Returning false indicates the refresh failed
  * @internal
  */
+// TSNOTE reactivity computed refreshComputed
 export function refreshComputed(computed: ComputedRefImpl): undefined {
   if (
     computed.flags & EffectFlags.TRACKING &&

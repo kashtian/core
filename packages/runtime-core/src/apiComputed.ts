@@ -1,6 +1,7 @@
 import { type ComputedRefImpl, computed as _computed } from '@vue/reactivity'
 import { getCurrentInstance, isInSSRComponentSetup } from './component'
 
+// TSNOTE reactivity computed function 
 export const computed: typeof _computed = (
   getterOrOptions: any,
   debugOptions?: any,
